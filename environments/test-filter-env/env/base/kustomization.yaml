@@ -1,0 +1,3 @@
+resources:
+- test-filter-env-environment.yaml
+- test-filter-env-rolebinding.yaml

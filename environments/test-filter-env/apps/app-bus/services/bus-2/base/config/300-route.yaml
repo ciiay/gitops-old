@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  name: bus-2
+  namespace: test-filter-env
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: bus-2
+    weight: 100
+  wildcardPolicy: None

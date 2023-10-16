@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  creationTimestamp: null
+  name: test-filter-env-app-bus-bus-2-binding
+  namespace: cicd
+spec:
+  params:
+  - name: imageRepo
+    value: image-registry.openshift-image-registry.svc:5000/cicd/bus-2
+  - name: tlsVerify
+    value: "false"
+status: {}

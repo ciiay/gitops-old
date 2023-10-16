@@ -1,0 +1,3 @@
+resources:
+- test-refresh-env-environment.yaml
+- test-refresh-env-rolebinding.yaml
