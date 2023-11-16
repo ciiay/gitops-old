@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: aws-provider
+  name: csi-secrets-store-provider-aws
   namespace: openshift-cluster-csi-drivers
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: aws-provider-cluster-role
+  name: csi-secrets-store-provider-aws-cluster-role
 rules:
 - apiGroups: [""]
   resources: ["serviceaccounts/token"]
@@ -25,35 +25,35 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: aws-provider-cluster-rolebinding
+  name: csi-secrets-store-provider-aws-cluster-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: aws-provider-cluster-role
+  name: csi-secrets-store-provider-aws-cluster-role
 subjects:
 - kind: ServiceAccount
-  name: aws-provider
+  name: csi-secrets-store-provider-aws
   namespace: openshift-cluster-csi-drivers
 ---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   namespace: openshift-cluster-csi-drivers
-  name: aws-provider
+  name: csi-secrets-store-provider-aws
   labels:
-    app: aws-provider
+    app: csi-secrets-store-provider-aws
 spec:
   updateStrategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: aws-provider
+      app: csi-secrets-store-provider-aws
   template:
     metadata:
       labels:
-        app: aws-provider
+        app: csi-secrets-store-provider-aws
     spec:
-      serviceAccountName: aws-provider
+      serviceAccountName: csi-secrets-store-provider-aws
       hostNetwork: false
       containers:
         - name: provider-aws-installer
