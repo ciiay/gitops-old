@@ -32,7 +32,7 @@ spec:
               mountPath: "/mnt/secrets-store"
               readOnly: true
           resources: {}
-      serviceAccountName: aws-provider
+      serviceAccountName: default
       volumes:
         - name: secrets-store-inline
           csi:
